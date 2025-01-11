@@ -34,7 +34,9 @@ final class NewsService implements INewsService {
         ]),
       );
       if (response.data == null) throw NullResponseException();
-      final news = response.data!['articles'] as List<Map<String, dynamic>>;
+      final news = (response.data!['articles'] as List)
+          .map((item) => item as Map<String, dynamic>)
+          .toList();
       return news
           .map(
             NewsModel.fromJson,
