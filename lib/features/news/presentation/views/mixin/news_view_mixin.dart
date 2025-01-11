@@ -7,6 +7,8 @@ mixin NewsViewMixin on ConsumerState<NewsView> {
   late final TextEditingController _searchController;
   TextEditingController get searchController => _searchController;
 
+  final _formKey = GlobalKey<FormState>();
+  GlobalKey<FormState> get formKey => _formKey;
   @override
   void initState() {
     super.initState();
@@ -14,7 +16,9 @@ mixin NewsViewMixin on ConsumerState<NewsView> {
   }
 
   void searchButtonPressed() {
-    ref.read(newsNotifierProvider.notifier).getNews(searchController.text);
+    if (_formKey.currentState!.validate()) {
+      ref.read(newsNotifierProvider.notifier).getNews(searchController.text);
+    }
   }
 
   @override
