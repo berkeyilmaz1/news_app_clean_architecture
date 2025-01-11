@@ -3,19 +3,24 @@ part of '../views/news_view.dart';
 final class NewsCard extends StatelessWidget {
   const NewsCard({
     required this.news,
+    required this.onTap,
     super.key,
   });
 
   final NewsEntity news;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Row(
-        children: [
-          _CardImage(news: news),
-          _CardTexts(news: news),
-        ],
+    return GestureDetector(
+      onTap: onTap,
+      child: Card(
+        child: Row(
+          children: [
+            _CardImage(news: news),
+            _CardTexts(news: news),
+          ],
+        ),
       ),
     );
   }
@@ -32,11 +37,14 @@ final class _CardImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: const BorderRadiusGeneral.allLow(),
-      child: Image.network(
-        news.urlToImage!,
-        width: MediaQuery.of(context).size.width * 0.3,
-        height: MediaQuery.of(context).size.width * 0.3,
-        fit: BoxFit.cover,
+      child: Hero(
+        tag: news.urlToImage!,
+        child: Image.network(
+          news.urlToImage!,
+          width: MediaQuery.of(context).size.width * 0.3,
+          height: MediaQuery.of(context).size.width * 0.3,
+          fit: BoxFit.cover,
+        ),
       ),
     );
   }
