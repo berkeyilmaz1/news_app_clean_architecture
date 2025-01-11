@@ -10,7 +10,7 @@ import 'package:news_app/features/news/presentation/providers/news_notifiers.dar
 
 final getIt = GetIt.instance;
 
-Future<void> init() async {
+Future<void> setupDependencies() async {
   // Core
   getIt
     ..registerLazySingleton<Dio>(() {
