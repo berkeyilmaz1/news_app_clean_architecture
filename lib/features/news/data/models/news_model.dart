@@ -1,6 +1,8 @@
 import 'package:news_app/features/news/domain/entities/news_entitiy.dart';
 
-class NewsModel extends NewsEntity {
+/// [NewsModel] is a class that extends the [NewsEntity] class.
+/// This class is responsible for converting JSON data to a [NewsEntity] object.
+final class NewsModel extends NewsEntity {
   const NewsModel({
     super.author,
     super.title,
