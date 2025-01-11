@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/features/news/presentation/views/news_view.dart';
 
 final class MainApp extends StatelessWidget {
   const MainApp({super.key});
@@ -7,7 +8,7 @@ final class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'News App',
-      home: SizedBox.shrink(),
+      home: NewsView(),
     );
   }
 }

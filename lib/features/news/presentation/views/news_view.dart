@@ -9,7 +9,6 @@ final class NewsView extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(newsNotifierProvider);
 
-    // UI implementation
     return Scaffold(
       body: Column(
         children: [
