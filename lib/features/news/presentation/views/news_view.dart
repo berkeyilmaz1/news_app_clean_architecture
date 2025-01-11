@@ -37,13 +37,15 @@ class _NewsViewState extends ConsumerState<NewsView> with NewsViewMixin {
                 padding: const PagePadding.all(),
                 child: Row(
                   spacing: WidgetSizes.spacingMid,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
                       child: CustomSearchBar(
                         controller: searchController,
-                        validator: (value) => Validators(value)
-                            .validateFormValueLength(
-                                StringConstants.searchHint),
+                        validator: (value) =>
+                            Validators(value).validateFormValueLength(
+                          StringConstants.searchHint,
+                        ),
                         onChanged: (value) {
                           formKey.currentState!.validate();
                         },
