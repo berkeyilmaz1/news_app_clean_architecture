@@ -3,6 +3,7 @@ import 'package:news_app/config/constants/string_constants.dart';
 import 'package:news_app/features/news/data/models/news_cache_model.dart';
 import 'package:news_app/features/news/data/models/news_model.dart';
 
+/// [NewsLocalService] is a class that is responsible for caching news data locally.
 final class NewsLocalService {
   late Box<NewsCacheModel> _box;
 

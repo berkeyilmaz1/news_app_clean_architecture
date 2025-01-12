@@ -1,5 +1,7 @@
 part of '../view/news_view.dart';
 
+/// [SearchBarWithHistory] is a StatelessWidget that is responsible for displaying the search bar with history.
+/// This includes the search bar, the search button, and the search history.
 final class SearchBarWithHistory extends StatelessWidget {
   const SearchBarWithHistory({
     required this.searchController,

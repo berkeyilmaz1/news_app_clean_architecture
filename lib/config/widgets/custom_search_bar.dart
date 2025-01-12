@@ -5,6 +5,7 @@ import 'package:news_app/config/widgets/page/page_padding.dart';
 import 'package:news_app/core/extensions/icon_extensions.dart';
 import 'package:news_app/core/utils/border_radius_general.dart';
 
+/// [CustomSearchBar] is a class that extends [StatelessWidget] to provide a custom search bar widget.
 final class CustomSearchBar extends StatelessWidget {
   const CustomSearchBar({
     required this.controller,

@@ -21,6 +21,7 @@ part '../widgets/news_list.dart';
 part '../widgets/search_components.dart';
 part '../widgets/searchbar_with_history.dart';
 
+/// [NewsView] is a StatelessWidget that is responsible for displaying the news list.
 final class NewsView extends ConsumerStatefulWidget {
   const NewsView({super.key});
 

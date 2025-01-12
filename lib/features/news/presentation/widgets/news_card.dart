@@ -1,5 +1,6 @@
 part of '../view/news_view.dart';
 
+/// [NewsCard] is a StatelessWidget that is responsible for displaying the news card.
 final class NewsCard extends StatelessWidget {
   const NewsCard({
     required this.news,
@@ -47,8 +48,8 @@ final class _CardImage extends StatelessWidget {
         tag: news.urlToImage!,
         child: Image.network(
           news.urlToImage!,
-          width: MediaQuery.of(context).size.width * 0.3,
-          height: MediaQuery.of(context).size.width * 0.3,
+          width: context.width3,
+          height: context.height3,
           fit: BoxFit.cover,
           errorBuilder: (context, error, stackTrace) {
             return const Icon(Icons.error);

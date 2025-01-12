@@ -1,5 +1,7 @@
 part of '../view/news_view.dart';
 
+/// [SearchComponents] is a StatelessWidget that is responsible for displaying the search components.
+/// This includes the search bar and the search button.
 final class SearchComponents extends StatelessWidget {
   const SearchComponents({
     required this.searchController,

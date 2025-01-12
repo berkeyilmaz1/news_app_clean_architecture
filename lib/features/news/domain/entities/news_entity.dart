@@ -2,7 +2,6 @@ import 'package:equatable/equatable.dart';
 
 /// NewsEntity is a class that represents the news entity in the domain layer.
 /// It extends Equatable which is a class that helps to compare objects of the same type.
-
 class NewsEntity extends Equatable {
   const NewsEntity({
     this.author,

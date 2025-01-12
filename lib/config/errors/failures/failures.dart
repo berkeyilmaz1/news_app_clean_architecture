@@ -7,10 +7,12 @@ sealed class Failure {
   final String errorMessage;
 }
 
+/// [NetworkFailure] is a failure that occurs when there is a network error.
 final class NetworkFailure extends Failure {
   NetworkFailure({required super.errorMessage});
 }
 
+/// [UnknownFailure] is a failure that occurs when an unknown error occurs.
 final class UnknownFailure extends Failure {
   UnknownFailure({required super.errorMessage});
 }

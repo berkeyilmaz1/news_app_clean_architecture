@@ -9,7 +9,6 @@ final class ApplicationStart {
     WidgetsFlutterBinding.ensureInitialized();
 
     await Hive.initFlutter();
-
     await setupDependencies();
   }
 }

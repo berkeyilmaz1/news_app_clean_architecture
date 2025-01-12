@@ -8,6 +8,7 @@ import 'package:news_app/features/news/data/models/news_model.dart';
 import 'package:news_app/features/news/domain/repositories/news_repository.dart';
 
 /// [NewsRepositoryImpl] is the implementation of the NewsRepository
+/// It is responsible for fetching news data from the API and caching it locally.
 final class NewsRepositoryImpl implements NewsRepository {
   NewsRepositoryImpl({
     required NewsService newsService,

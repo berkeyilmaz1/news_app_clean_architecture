@@ -10,7 +10,7 @@ import 'package:news_app/features/news/domain/usecases/get_news.dart';
 import 'package:news_app/features/news/presentation/providers/news_notifiers.dart';
 
 final getIt = GetIt.instance;
-
+/// [setupDependencies] is a function that sets up the dependencies for the application.
 Future<void> setupDependencies() async {
   // Core
   getIt

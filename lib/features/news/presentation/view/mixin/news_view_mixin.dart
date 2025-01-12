@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/features/news/presentation/providers/news_state_notifier.dart';
 import 'package:news_app/features/news/presentation/view/news_view.dart';
 
+/// [NewsViewMixin] is a mixin class that contains the logic for the [NewsView].
 mixin NewsViewMixin on ConsumerState<NewsView> {
   late final TextEditingController _searchController;
   TextEditingController get searchController => _searchController;
