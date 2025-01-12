@@ -11,7 +11,7 @@ final class AppTheme {
         elevation: 0,
         centerTitle: true,
         titleTextStyle: TextStyle(
-          fontSize: WidgetSizes.spacingNormal,
+          fontSize: WidgetSizes.spacingLarge,
           fontWeight: FontWeight.bold,
         ),
         iconTheme: IconThemeData(
