@@ -22,6 +22,10 @@ dependencies:
   dio: ^5.7.0
   pretty_dio_logger: ^1.4.0
 
+  #Cache
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
   #Value Equality
   equatable: ^2.0.7
 
@@ -39,6 +43,7 @@ dev_dependencies:
     sdk: flutter
 
   build_runner: ^2.4.14
+  hive_generator: ^2.0.1
 
 flutter:
   uses-material-design: true
