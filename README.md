@@ -3,11 +3,15 @@
 
 This is a basic **"News App"** project that uses Clean Architecture and Riverpod for state management.
 
-## Images
+## App Video
+
+
+https://github.com/user-attachments/assets/ffc7eea9-dbe4-4dca-aabd-156bb8f9b30a
+
 
 ## Features
 
-* **News List:** Displays the related news that given query from the user.
+* **News List:** Displays the related news that given query from the user with **pagination**.
 
 * **News Detail:** Display the basic informations and images of the selected news.
  
