@@ -5,5 +5,5 @@ final class StringConstants {
   static const String unknownFailure = 'An Unknown Error Occurred';
   static const String searchHint = 'Search';
   static const String pageSize = '6';
-  static const String historyBox = 'historyBox';
+  static const String cacheBoxName = 'news_cache';
 }

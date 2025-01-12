@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:news_app/features/news/domain/entities/news_entitiy.dart';
+import 'package:news_app/features/news/domain/entities/news_entity.dart';
 
 /// [NewsStatus] is an enum class.
 /// This class is used to manage the status of the news.

@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:news_app/config/constants/service_paths.dart';
 import 'package:news_app/core/service/news_network_manager.dart';
+import 'package:news_app/features/news/data/datasource/news_local_service.dart'; // Import NewsLocalService
 import 'package:news_app/features/news/data/datasource/news_service.dart';
 import 'package:news_app/features/news/data/repositories/news_repository_impl.dart';
 import 'package:news_app/features/news/domain/repositories/news_repository.dart';
@@ -28,10 +29,16 @@ Future<void> setupDependencies() async {
     ..registerLazySingleton<NewsService>(
       () => NewsService(newsNetworkManager: getIt()),
     )
+    ..registerLazySingleton<NewsLocalService>(
+      NewsLocalService.new,
+    )
 
     // Repositories
     ..registerLazySingleton<NewsRepository>(
-      () => NewsRepositoryImpl(newsService: getIt()),
+      () => NewsRepositoryImpl(
+        newsService: getIt(),
+        newsLocalService: getIt(),
+      ),
     )
 
     // Use Cases
@@ -43,4 +50,6 @@ Future<void> setupDependencies() async {
     ..registerFactory(
       () => NewsNotifier(getIt()),
     );
+
+  await getIt<NewsLocalService>().init();
 }

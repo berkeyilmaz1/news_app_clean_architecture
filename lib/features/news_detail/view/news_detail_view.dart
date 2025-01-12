@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:news_app/config/widgets/page/page_padding.dart';
 import 'package:news_app/config/widgets/widget_sizes.dart';
-import 'package:news_app/features/news/domain/entities/news_entitiy.dart';
+import 'package:news_app/features/news/domain/entities/news_entity.dart';
 
 part '../widgets/detail_content.dart';
 part '../widgets/detail_image.dart';

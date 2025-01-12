@@ -7,8 +7,9 @@ final class ApplicationStart {
 
   static Future<void> initialize() async {
     WidgetsFlutterBinding.ensureInitialized();
-    await setupDependencies();
 
     await Hive.initFlutter();
+
+    await setupDependencies();
   }
 }

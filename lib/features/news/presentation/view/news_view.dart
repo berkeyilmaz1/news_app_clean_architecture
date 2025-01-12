@@ -10,7 +10,7 @@ import 'package:news_app/core/extensions/context_extensions.dart';
 import 'package:news_app/core/extensions/icon_extensions.dart';
 import 'package:news_app/core/utils/border_radius_general.dart';
 import 'package:news_app/core/utils/validators.dart';
-import 'package:news_app/features/news/domain/entities/news_entitiy.dart';
+import 'package:news_app/features/news/domain/entities/news_entity.dart';
 import 'package:news_app/features/news/presentation/providers/news_state.dart';
 import 'package:news_app/features/news/presentation/providers/news_state_notifier.dart';
 import 'package:news_app/features/news/presentation/view/mixin/news_view_mixin.dart';
