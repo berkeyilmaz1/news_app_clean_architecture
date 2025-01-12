@@ -1,8 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:news_app/config/constants/string_constants.dart';
 import 'package:news_app/config/errors/failures/failures.dart';
-import 'package:news_app/core/cache/cache_manager.dart';
-import 'package:news_app/features/news/domain/entities/news_entitiy.dart';
+import 'package:news_app/features/news/domain/entities/news_entity.dart';
 import 'package:news_app/features/news/domain/usecases/get_news.dart';
 import 'package:news_app/features/news/presentation/providers/news_state.dart';
 
@@ -10,10 +8,8 @@ import 'package:news_app/features/news/presentation/providers/news_state.dart';
 /// This class is used to manage the state of the news.
 final class NewsNotifier extends StateNotifier<NewsState> {
   NewsNotifier(this.getNewsUseCase) : super(const NewsState());
-  
+
   final GetNewsUseCase getNewsUseCase;
-  final CacheManager<List<String>> cacheManager =
-      CacheManager<List<String>>(boxName: StringConstants.historyBox);
 
   Future<void> getNews(String query) async {
     changeLoading();
@@ -26,8 +22,6 @@ final class NewsNotifier extends StateNotifier<NewsState> {
             : [...state.searchHistory ?? [], query],
         newsStatus: NewsStatus.loaded,
       );
-      if (state.searchHistory == null) return;
-      cacheHistory();
     });
   }
 
@@ -66,12 +60,5 @@ final class NewsNotifier extends StateNotifier<NewsState> {
 
   void changeLoading() {
     state = state.copyWith(newsStatus: NewsStatus.loading);
-  }
-
-  void cacheHistory() {
-    cacheManager.put(
-      key: StringConstants.historyBox,
-      value: state.searchHistory!,
-    );
   }
 }
