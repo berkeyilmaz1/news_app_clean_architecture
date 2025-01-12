@@ -44,6 +44,9 @@ class _NewsViewState extends ConsumerState<NewsView> with NewsViewMixin {
           ),
           behavior: HitTestBehavior.opaque,
           child: Scaffold(
+            appBar: AppBar(
+              title: const Text(StringConstants.appName),
+            ),
             body: Column(
               children: [
                 SearchBarWithHistory(
