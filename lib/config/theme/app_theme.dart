@@ -15,7 +15,7 @@ final class AppTheme {
           fontWeight: FontWeight.bold,
         ),
         iconTheme: IconThemeData(
-          color: Colors.white,
+          color: Colors.black,
           shadows: <Shadow>[Shadow(blurRadius: WidgetSizes.spacingNormal)],
         ),
       ),
