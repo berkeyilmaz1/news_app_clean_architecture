@@ -9,22 +9,31 @@ final class NewsNotifier extends StateNotifier<NewsState> {
   final GetNewsUseCase getNewsUseCase;
 
   Future<void> getNews(String query) async {
-    state = state.copyWith(isLoading: true);
+    state = state.copyWith(newsStatus: NewsStatus.loading);
     final result = await getNewsUseCase.call(query, 1);
-    state = state.copyWith(isLoading: false);
+
     result.fold(
-      (error) => state = state.copyWith(errorMessage: error.errorMessage),
-      (news) => state = state.copyWith(news: news),
+      (error) => state = state.copyWith(
+        newsStatus: NewsStatus.error,
+        errorMessage: error.errorMessage,
+      ),
+      (news) => state = state.copyWith(
+        news: news,
+        newsStatus: NewsStatus.loaded,
+      ),
     );
   }
 
   Future<void> loadNews(String query) async {
-    state = state.copyWith(isLoading: true);
+    state = state.copyWith(newsStatus: NewsStatus.loading);
     final page = state.page;
     final result = await getNewsUseCase.call(query, page);
 
     result.fold(
-      (error) => state = state.copyWith(errorMessage: error.errorMessage),
+      (error) => state = state.copyWith(
+        newsStatus: NewsStatus.error,
+        errorMessage: error.errorMessage,
+      ),
       (news) {
         final currentNews = state.news ?? [];
         final newNews =
@@ -32,7 +41,7 @@ final class NewsNotifier extends StateNotifier<NewsState> {
         state = state.copyWith(
           news: [...currentNews, ...newNews],
           page: page + 1,
-          isLoading: false,
+          newsStatus: NewsStatus.loaded,
         );
       },
     );

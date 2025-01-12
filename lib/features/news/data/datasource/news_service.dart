@@ -19,8 +19,10 @@ final class NewsService implements INewsService {
 
   final NewsNetworkManager _newsNetworkManager;
   @override
-  Future<List<NewsModel>> getNews(
-      {required String query, required int page}) async {
+  Future<List<NewsModel>> getNews({
+    required String query,
+    required int page,
+  }) async {
     try {
       final response = await _newsNetworkManager.get<Map<String, dynamic>>(
         ServicePaths.news,
@@ -44,19 +46,18 @@ final class NewsService implements INewsService {
         ]),
       );
       if (response.data == null) throw NullResponseException();
-      final news = (response.data!['articles'] as List)
-          .map((item) => item as Map<String, dynamic>)
-          .toList();
+      final news = response.data!['articles'] as List;
+
       return news
-          .map(
-            NewsModel.fromJson,
-          )
+          .map((item) => NewsModel.fromJson(item as Map<String, dynamic>))
           .toList();
     } on DioException catch (e) {
       throw DioException(
         requestOptions: e.requestOptions,
         message: e.message,
       );
+    } on Exception catch (_) {
+      throw ServerException();
     }
   }
 }

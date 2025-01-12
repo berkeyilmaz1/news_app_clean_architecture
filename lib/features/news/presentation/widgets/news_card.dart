@@ -10,8 +10,13 @@ final class NewsCard extends StatelessWidget {
   final NewsEntity news;
   final VoidCallback onTap;
 
+ 
+
   @override
   Widget build(BuildContext context) {
+    if (news.title == '[Removed]' || news.urlToImage == null) {
+      return const SizedBox.shrink();
+    }
     return GestureDetector(
       onTap: onTap,
       child: Card(
@@ -35,6 +40,10 @@ final class _CardImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (news.urlToImage == null) {
+      return const SizedBox.shrink();
+    }
+
     return ClipRRect(
       borderRadius: const BorderRadiusGeneral.allLow(),
       child: Hero(
@@ -66,7 +75,7 @@ final class _CardTexts extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              news.title!,
+              news.title ?? '',
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
@@ -74,7 +83,7 @@ final class _CardTexts extends StatelessWidget {
               ),
             ),
             Text(
-              news.description!,
+              news.description ?? '',
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.start,

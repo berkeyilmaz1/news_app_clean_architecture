@@ -20,14 +20,18 @@ final class NewsRepositoryImpl implements NewsRepository {
     try {
       final response = await _newsService.getNews(query: query, page: page);
       return Right(response);
-    } on DioException catch (e) {
+    } on DioException catch (_) {
       return Left(
         NetworkFailure(
-          errorMessage: e.message ?? StringConstants.networkError,
+          errorMessage: StringConstants.networkError,
         ),
       );
     } catch (e) {
-      return Left(UnknownFailure(errorMessage: e.toString()));
+      return Left(
+        UnknownFailure(
+          errorMessage: StringConstants.unknownFailure,
+        ),
+      );
     }
   }
 }
