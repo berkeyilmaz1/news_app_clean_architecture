@@ -9,12 +9,41 @@ final class NewsNotifier extends StateNotifier<NewsState> {
   final GetNewsUseCase getNewsUseCase;
 
   Future<void> getNews(String query) async {
-    state = state.copyWith(isLoading: true);
-    final result = await getNewsUseCase.call(query);
-    state = state.copyWith(isLoading: false);
+    state = state.copyWith(newsStatus: NewsStatus.loading);
+    final result = await getNewsUseCase.call(query, 1);
+
     result.fold(
-      (error) => state = state.copyWith(errorMessage: error.errorMessage),
-      (news) => state = state.copyWith(news: news),
+      (error) => state = state.copyWith(
+        newsStatus: NewsStatus.error,
+        errorMessage: error.errorMessage,
+      ),
+      (news) => state = state.copyWith(
+        news: news,
+        newsStatus: NewsStatus.loaded,
+      ),
+    );
+  }
+
+  Future<void> loadNews(String query) async {
+    state = state.copyWith(newsStatus: NewsStatus.loading);
+    final page = state.page;
+    final result = await getNewsUseCase.call(query, page);
+
+    result.fold(
+      (error) => state = state.copyWith(
+        newsStatus: NewsStatus.error,
+        errorMessage: error.errorMessage,
+      ),
+      (news) {
+        final currentNews = state.news ?? [];
+        final newNews =
+            news.where((element) => !currentNews.contains(element)).toList();
+        state = state.copyWith(
+          news: [...currentNews, ...newNews],
+          page: page + 1,
+          newsStatus: NewsStatus.loaded,
+        );
+      },
     );
   }
 }

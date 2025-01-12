@@ -8,15 +8,21 @@ import 'package:news_app/core/utils/border_radius_general.dart';
 final class CustomSearchBar extends StatelessWidget {
   const CustomSearchBar({
     required this.controller,
+    required this.onChanged,
     super.key,
+    this.validator,
   });
 
   final TextEditingController controller;
+  final String? Function(String?)? validator;
+  final ValueChanged<String> onChanged;
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       controller: controller,
+      validator: validator,
+      keyboardType: TextInputType.text,
       decoration: InputDecoration(
         hintText: StringConstants.searchHint,
         prefixIcon: IconConstants.search.toIcon,
@@ -25,6 +31,7 @@ final class CustomSearchBar extends StatelessWidget {
         ),
         contentPadding: const PagePadding.generalCardAll(),
       ),
+      onChanged: onChanged,
     );
   }
 }

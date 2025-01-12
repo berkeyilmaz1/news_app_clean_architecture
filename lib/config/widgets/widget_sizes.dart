@@ -1,12 +1,15 @@
 final class WidgetSizes {
   WidgetSizes._();
 
-  ///[spacingSmall] is 5
+  ///[spacingSmall] is 4
   static const double spacingSmall = 4;
 
-  ///[spacingMid] is 10
+  ///[spacingMid] is 12
   static const double spacingMid = 12;
 
-  ///[spacingLarge] is 20
+  /// [spacingNormal] is  16
+  static const double spacingNormal = 16;
+
+  ///[spacingLarge] is 24
   static const double spacingLarge = 24;
 }
