@@ -61,19 +61,19 @@ The project is organized into the following layers:
   * **hive_generator:** Code generator for Hive type adapters.
   * **envied_generator:** Code generator for environment variable classes.
 
-## API Kullanımı
+## API Usage
 
-#### Tüm öğeleri getir
+#### Get All News
 
 ```http 
 > newsapi.org/v2
   GET /everything
 ```
 
-| Parametre | Tip     | Açıklama                |
+| Parameter | Type     | Explanation                |
 | :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Gerekli**. API KEY|
-| `q` | `string` | **Gerekli**. Query that will be search.|
+| `api_key` | `string` | **API KEY** |
+| `q` | `string` | **The query that will be searched** |
 | `page` | `string` | The page number will be provided by the app.|
 | `pageSize` | `string` | The page size will be provided by the app.|
 
