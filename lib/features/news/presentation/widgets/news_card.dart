@@ -46,13 +46,13 @@ final class _CardImage extends StatelessWidget {
       borderRadius: const BorderRadiusGeneral.allLow(),
       child: Hero(
         tag: news.urlToImage!,
-        child: Image.network(
-          news.urlToImage!,
+        child: CachedNetworkImage(
+          imageUrl: news.urlToImage!,
           width: context.width3,
-          height: context.height3,
+          height: context.height2,
           fit: BoxFit.cover,
-          errorBuilder: (context, error, stackTrace) {
-            return const Icon(Icons.error);
+          errorWidget: (context, error, stackTrace) {
+            return IconConstants.error.toIcon;
           },
         ),
       ),

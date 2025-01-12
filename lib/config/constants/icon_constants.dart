@@ -6,4 +6,5 @@ final class IconConstants {
 
   static IconData get search => Icons.search;
   static IconData get history => Icons.history;
+  static IconData get error => Icons.error;
 }

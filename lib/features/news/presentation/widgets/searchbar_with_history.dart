@@ -24,49 +24,71 @@ final class SearchBarWithHistory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Column(
       children: [
-        Column(
-          children: [
-            SearchComponents(
-              searchBarTapped: searchBarTapped,
-              searchController: searchController,
-              searchButtonPressed: searchButtonPressed,
-              onChanged: searchBarOnChanged,
+        Padding(
+          padding: const PagePadding.allWithoutBottom(),
+          child: CustomSearchBar(
+            searchBarTapped: searchBarTapped,
+            searchButtonPressed: searchButtonPressed,
+            controller: searchController,
+            validator: (value) => Validators(value).validateFormValueLength(
+              StringConstants.searchHint,
             ),
-            if (isHistoryVisible)
-              Padding(
-                padding: const PagePadding.allWithoutTop(),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: const BorderRadiusGeneral.allLow(),
-                  ),
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: state.searchHistory?.length ?? 0,
-                    itemBuilder: (context, index) {
-                      final searchHistory =
-                          state.searchHistory?.reversed.toList();
-                      if (searchHistory == null) {
-                        return const SizedBox.shrink();
-                      }
-                      return ListTile(
-                        leading: IconConstants.history.toIcon,
-                        title: Text(searchHistory[index]),
-                        onTap: () {
-                          searchController.text = searchHistory[index];
-                          changeVisibility();
-                        },
-                      );
-                    },
-                  ),
-                ),
-              ),
-          ],
+            onChanged: searchBarOnChanged,
+          ),
         ),
+        if (isHistoryVisible)
+          _History(
+            state: state,
+            searchController: searchController,
+            changeVisibility: changeVisibility,
+          ),
       ],
+    );
+  }
+}
+
+final class _History extends StatelessWidget {
+  const _History({
+    required this.state,
+    required this.searchController,
+    required this.changeVisibility,
+  });
+
+  final NewsState state;
+  final TextEditingController searchController;
+  final VoidCallback changeVisibility;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const PagePadding.allWithoutTop(),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(color: Colors.grey),
+          borderRadius: const BorderRadiusGeneral.allLow(),
+        ),
+        child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: state.searchHistory?.length ?? 0,
+          itemBuilder: (context, index) {
+            final searchHistory = state.searchHistory?.reversed.toList();
+            if (searchHistory == null) {
+              return const SizedBox.shrink();
+            }
+            return ListTile(
+              leading: IconConstants.history.toIcon,
+              title: Text(searchHistory[index]),
+              onTap: () {
+                searchController.text = searchHistory[index];
+                changeVisibility();
+              },
+            );
+          },
+        ),
+      ),
     );
   }
 }

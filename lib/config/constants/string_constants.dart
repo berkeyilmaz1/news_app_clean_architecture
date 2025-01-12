@@ -8,4 +8,5 @@ final class StringConstants {
   static const String searchHint = 'Search';
   static const String pageSize = '10';
   static const String cacheBoxName = 'news_cache';
+  static const String queryBoxName = 'query_box';
 }

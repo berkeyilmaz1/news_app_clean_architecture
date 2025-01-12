@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:news_app/config/constants/icon_constants.dart';
@@ -5,7 +6,6 @@ import 'package:news_app/config/constants/string_constants.dart';
 import 'package:news_app/config/widgets/custom_loading.dart';
 import 'package:news_app/config/widgets/custom_search_bar.dart';
 import 'package:news_app/config/widgets/page/page_padding.dart';
-import 'package:news_app/config/widgets/widget_sizes.dart';
 import 'package:news_app/core/extensions/context_extensions.dart';
 import 'package:news_app/core/extensions/icon_extensions.dart';
 import 'package:news_app/core/utils/border_radius_general.dart';

@@ -19,21 +19,14 @@ final class SearchComponents extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const PagePadding.allWithoutBottom(),
-      child: Row(
-        spacing: WidgetSizes.spacingMid,
-        children: [
-          Expanded(
-            child: CustomSearchBar(
-              searchBarTapped: searchBarTapped,
-              searchButtonPressed: searchButtonPressed,
-              controller: searchController,
-              validator: (value) => Validators(value).validateFormValueLength(
-                StringConstants.searchHint,
-              ),
-              onChanged: onChanged,
-            ),
-          ),
-        ],
+      child: CustomSearchBar(
+        searchBarTapped: searchBarTapped,
+        searchButtonPressed: searchButtonPressed,
+        controller: searchController,
+        validator: (value) => Validators(value).validateFormValueLength(
+          StringConstants.searchHint,
+        ),
+        onChanged: onChanged,
       ),
     );
   }

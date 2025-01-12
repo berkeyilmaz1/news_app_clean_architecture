@@ -25,6 +25,7 @@ dependencies:
   #Cache
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  cached_network_image: ^3.4.1
 
   #Value Equality
   equatable: ^2.0.7

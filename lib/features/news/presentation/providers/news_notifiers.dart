@@ -30,18 +30,21 @@ final class NewsNotifier extends StateNotifier<NewsState> {
     final page = state.page;
     final result = await getNewsUseCase.call(query, page);
 
-    result.fold(
-      errorState,
-      (news) {
-        final currentNews = state.news ?? [];
-        final newNews = checkSameNews(news, currentNews);
-        state = state.copyWith(
-          news: [...currentNews, ...newNews],
-          page: page + 1,
-          newsStatus: NewsStatus.loaded,
-        );
-      },
-    );
+    /// state.page < 11 because the API only has 10 pages.
+    if (state.page < 11) {
+      result.fold(
+        errorState,
+        (news) {
+          final currentNews = state.news ?? [];
+          final newNews = checkSameNews(news, currentNews);
+          state = state.copyWith(
+            news: [...currentNews, ...newNews],
+            page: page + 1,
+            newsStatus: NewsStatus.loaded,
+          );
+        },
+      );
+    }
   }
 
   List<NewsEntity> checkSameNews(
