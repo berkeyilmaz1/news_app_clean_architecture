@@ -27,7 +27,6 @@ final class NewsRepositoryImpl implements NewsRepository {
       /// Because we only cache the first page
       if (page == 1) {
         final response = _newsLocalService.getCachedNews(query);
-        print('Cached news: ${_newsLocalService.getCachedNews(query)}');
         if (response != null) {
           return Right(response.news);
         }
@@ -39,14 +38,13 @@ final class NewsRepositoryImpl implements NewsRepository {
         await _newsLocalService.cacheNews(query, response);
       }
       return Right(response);
-    } on DioException catch (_) {
+    } on DioException catch (e) {
       return Left(
         NetworkFailure(
           errorMessage: StringConstants.networkError,
         ),
       );
     } catch (e) {
-      print('Error: $e');
       return Left(
         UnknownFailure(
           errorMessage: StringConstants.unknownFailure,
