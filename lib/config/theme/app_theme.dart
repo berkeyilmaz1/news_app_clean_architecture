@@ -13,9 +13,10 @@ final class AppTheme {
         titleTextStyle: TextStyle(
           fontSize: WidgetSizes.spacingLarge,
           fontWeight: FontWeight.bold,
+          color: Colors.black,
         ),
         iconTheme: IconThemeData(
-          color: Colors.black,
+          color: Colors.white,
           shadows: <Shadow>[Shadow(blurRadius: WidgetSizes.spacingNormal)],
         ),
       ),
