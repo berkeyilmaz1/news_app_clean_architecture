@@ -1,4 +1,4 @@
-part of '../views/news_view.dart';
+part of '../view/news_view.dart';
 
 final class NewsCard extends StatelessWidget {
   const NewsCard({
