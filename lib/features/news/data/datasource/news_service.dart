@@ -1,13 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:news_app/config/constants/api_key.dart';
 import 'package:news_app/config/constants/service_paths.dart';
+import 'package:news_app/config/constants/string_constants.dart';
 import 'package:news_app/config/errors/exceptions/exceptions.dart';
 import 'package:news_app/core/service/enums/network_manager_queries.dart';
 import 'package:news_app/core/service/news_network_manager.dart';
 import 'package:news_app/features/news/data/models/news_model.dart';
 
 abstract class INewsService {
-  Future<List<NewsModel>> getNews({required String query});
+  Future<List<NewsModel>> getNews({required String query, required int page});
 }
 
 /// [NewsService] is a class that implements the [INewsService] class.
@@ -18,7 +19,8 @@ final class NewsService implements INewsService {
 
   final NewsNetworkManager _newsNetworkManager;
   @override
-  Future<List<NewsModel>> getNews({required String query}) async {
+  Future<List<NewsModel>> getNews(
+      {required String query, required int page}) async {
     try {
       final response = await _newsNetworkManager.get<Map<String, dynamic>>(
         ServicePaths.news,
@@ -30,6 +32,14 @@ final class NewsService implements INewsService {
           NetworkManagerQueries.makeQuery(
             query: NetworkManagerQueries.apiKey,
             value: ApiKey.apiKey,
+          ),
+          NetworkManagerQueries.makeQuery(
+            query: NetworkManagerQueries.pageSize,
+            value: StringConstants.pageSize,
+          ),
+          NetworkManagerQueries.makeQuery(
+            query: NetworkManagerQueries.page,
+            value: page.toString(),
           ),
         ]),
       );

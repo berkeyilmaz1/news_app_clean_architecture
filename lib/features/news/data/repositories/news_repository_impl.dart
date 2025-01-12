@@ -15,9 +15,10 @@ final class NewsRepositoryImpl implements NewsRepository {
   @override
   Future<Either<Failure, List<NewsModel>>> getNews({
     required String query,
+    required int page,
   }) async {
     try {
-      final response = await _newsService.getNews(query: query);
+      final response = await _newsService.getNews(query: query, page: page);
       return Right(response);
     } on DioException catch (e) {
       return Left(

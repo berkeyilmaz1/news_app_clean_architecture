@@ -3,7 +3,9 @@
 /// apiKey is used to make a query for the api key.
 enum NetworkManagerQueries {
   q,
-  apiKey;
+  apiKey,
+  page,
+  pageSize;
 
   static MapEntry<String, String> makeQuery({
     required NetworkManagerQueries query,

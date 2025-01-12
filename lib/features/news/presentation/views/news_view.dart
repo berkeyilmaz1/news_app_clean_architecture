@@ -61,7 +61,7 @@ class _NewsViewState extends ConsumerState<NewsView> with NewsViewMixin {
                   ],
                 ),
               ),
-              if (state.isLoading)
+              if (state.isLoading && state.news == null)
                 Center(
                   child: Lottie.asset(
                     LottieConstants.loading,
@@ -74,12 +74,25 @@ class _NewsViewState extends ConsumerState<NewsView> with NewsViewMixin {
               else if (state.news != null)
                 Expanded(
                   child: ListView.builder(
-                    // itemCount: state.news!.length,
-                    itemCount: 20,
+                    controller: scrollController,
+                    itemCount: state.news!.length + 1,
                     itemBuilder: (context, index) {
+                      if (index == state.news!.length) {
+                        return state.isLoading
+                            ? Center(
+                                child: Lottie.asset(
+                                  LottieConstants.loading,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.1,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.1,
+                                ),
+                              )
+                            : const SizedBox.shrink();
+                      }
                       final news = state.news![index];
-                      if (state.news?[index].title == '[Removed]' ||
-                          state.news?[index].urlToImage == null) {
+                      if (news.title == '[Removed]' ||
+                          news.urlToImage == null) {
                         return const SizedBox.shrink();
                       }
                       return Padding(

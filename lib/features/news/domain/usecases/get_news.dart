@@ -8,14 +8,13 @@ import 'package:news_app/features/news/domain/repositories/news_repository.dart'
 /// This class is used to get news from the repository.
 /// This class takes a [String] as a parameter and returns a [List<NewsEntity>]
 /// or a [Failure].
-final class GetNewsUseCase
-    implements UseCase<Either<Failure, List<NewsEntity>>, String> {
+final class GetNewsUseCase {
   GetNewsUseCase({required NewsRepository newsRepository})
       : _newsRepository = newsRepository;
 
   final NewsRepository _newsRepository;
-  @override
-  Future<Either<Failure, List<NewsEntity>>> call(String query) {
-    return _newsRepository.getNews(query: query);
+
+  Future<Either<Failure, List<NewsEntity>>> call(String query, int page) {
+    return _newsRepository.getNews(query: query, page: page);
   }
 }
