@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:news_app/features/news/data/datasource/news_service.dart';
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 /// [NewsNetworkManager] is a class that defines the methods that are used to
 /// make network requests.
@@ -13,6 +14,12 @@ final class NewsNetworkManager {
   })  : _dio = dio,
         _baseUrl = baseUrl {
     _dio.options.baseUrl = baseUrl;
+    _dio.interceptors.add(
+      PrettyDioLogger(
+        requestHeader: true,
+        requestBody: true,
+      ),
+    );
   }
 
   final Dio _dio;

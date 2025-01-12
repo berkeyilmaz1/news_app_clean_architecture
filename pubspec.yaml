@@ -20,6 +20,7 @@ dependencies:
 
   #Network
   dio: ^5.7.0
+  pretty_dio_logger: ^1.4.0
 
   #Value Equality
   equatable: ^2.0.7
