@@ -15,27 +15,32 @@ final class NewsState extends Equatable {
     this.news,
     this.newsStatus = NewsStatus.initial,
     this.errorMessage,
+    this.searchHistory,
   });
 
   final List<NewsEntity>? news;
   final int page;
   final NewsStatus newsStatus;
   final String? errorMessage;
+  final List<String>? searchHistory;
 
   @override
-  List<Object?> get props => [news, page, newsStatus, errorMessage];
+  List<Object?> get props =>
+      [news, page, newsStatus, errorMessage, searchHistory];
 
   NewsState copyWith({
     List<NewsEntity>? news,
     int? page,
     NewsStatus? newsStatus,
     String? errorMessage,
+    List<String>? searchHistory,
   }) {
     return NewsState(
       news: news ?? this.news,
       page: page ?? this.page,
       newsStatus: newsStatus ?? this.newsStatus,
       errorMessage: errorMessage ?? this.errorMessage,
+      searchHistory: searchHistory ?? this.searchHistory,
     );
   }
 }

@@ -10,6 +10,11 @@ mixin NewsViewMixin on ConsumerState<NewsView> {
   ScrollController get scrollController => _scrollController;
   final _formKey = GlobalKey<FormState>();
   GlobalKey<FormState> get formKey => _formKey;
+
+  /// Search History
+  bool _isHistoryVisible = false;
+  bool get isHistoryVisible => _isHistoryVisible;
+
   @override
   void initState() {
     super.initState();
@@ -18,6 +23,26 @@ mixin NewsViewMixin on ConsumerState<NewsView> {
     _scrollController.addListener(_onScroll);
   }
 
+  /// Search Button Pressed
+  void searchButtonPressed() {
+    if (_formKey.currentState!.validate()) {
+      changeHistoryVisibility(value: false);
+      ref.read(newsNotifierProvider.notifier).getNews(searchController.text);
+    }
+  }
+
+  void changeHistoryVisibility({required bool value}) {
+    setState(() {
+      _isHistoryVisible = value;
+    });
+  }
+
+  /// Validation for SearchBar
+  void searchBarOnChanged(String value) {
+    _formKey.currentState!.validate();
+  }
+
+  /// Load More when scrolled to the bottom
   void _onScroll() {
     if (_scrollController.position.pixels ==
         _scrollController.position.maxScrollExtent) {
@@ -25,14 +50,11 @@ mixin NewsViewMixin on ConsumerState<NewsView> {
     }
   }
 
-  void searchButtonPressed() {
-    if (_formKey.currentState!.validate()) {
-      ref.read(newsNotifierProvider.notifier).getNews(searchController.text);
-    }
-  }
-
-  void searchBarOnChanged(String value) {
-    _formKey.currentState!.validate();
+  ///Open the history when the search bar is tapped
+  void searchBarTapped() {
+    changeHistoryVisibility(
+      value: true,
+    );
   }
 
   @override

@@ -10,8 +10,6 @@ final class NewsCard extends StatelessWidget {
   final NewsEntity news;
   final VoidCallback onTap;
 
- 
-
   @override
   Widget build(BuildContext context) {
     if (news.title == '[Removed]' || news.urlToImage == null) {
@@ -43,7 +41,6 @@ final class _CardImage extends StatelessWidget {
     if (news.urlToImage == null) {
       return const SizedBox.shrink();
     }
-
     return ClipRRect(
       borderRadius: const BorderRadiusGeneral.allLow(),
       child: Hero(
@@ -53,6 +50,9 @@ final class _CardImage extends StatelessWidget {
           width: MediaQuery.of(context).size.width * 0.3,
           height: MediaQuery.of(context).size.width * 0.3,
           fit: BoxFit.cover,
+          errorBuilder: (context, error, stackTrace) {
+            return const Icon(Icons.error);
+          },
         ),
       ),
     );
