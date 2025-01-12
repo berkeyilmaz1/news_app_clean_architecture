@@ -9,6 +9,7 @@ final class CustomSearchBar extends StatelessWidget {
   const CustomSearchBar({
     required this.controller,
     required this.onChanged,
+    required this.searchButtonPressed,
     super.key,
     this.validator,
   });
@@ -17,6 +18,8 @@ final class CustomSearchBar extends StatelessWidget {
   final String? Function(String?)? validator;
   final ValueChanged<String> onChanged;
 
+  final VoidCallback searchButtonPressed;
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -24,8 +27,11 @@ final class CustomSearchBar extends StatelessWidget {
       validator: validator,
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
+        suffixIcon: IconButton(
+          onPressed: searchButtonPressed,
+          icon: IconConstants.search.toIcon,
+        ),
         hintText: StringConstants.searchHint,
-        prefixIcon: IconConstants.search.toIcon,
         border: const OutlineInputBorder(
           borderRadius: BorderRadiusGeneral.allLow(),
         ),

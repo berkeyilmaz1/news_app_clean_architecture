@@ -17,20 +17,16 @@ final class SearchComponents extends StatelessWidget {
       padding: const PagePadding.all(),
       child: Row(
         spacing: WidgetSizes.spacingMid,
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: CustomSearchBar(
+              searchButtonPressed: searchButtonPressed,
               controller: searchController,
               validator: (value) => Validators(value).validateFormValueLength(
                 StringConstants.searchHint,
               ),
               onChanged: onChanged,
             ),
-          ),
-          SearchButton(
-            onPressed: searchButtonPressed,
-            child: IconConstants.search.toIcon,
           ),
         ],
       ),
