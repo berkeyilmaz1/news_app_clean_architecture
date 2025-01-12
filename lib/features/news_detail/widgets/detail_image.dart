@@ -13,7 +13,12 @@ final class DetailImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Hero(
       tag: news.urlToImage!,
-      child: Image.network(news.urlToImage ?? ''),
+      child: CachedNetworkImage(
+        imageUrl: news.urlToImage ?? '',
+        errorWidget: (context, error, stackTrace) {
+          return const Icon(Icons.error);
+        },
+      ),
     );
   }
 }

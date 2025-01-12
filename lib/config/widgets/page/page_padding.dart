@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+/// [PagePadding] is a class that extends [EdgeInsets] to provide padding values for the pages.
 final class PagePadding extends EdgeInsets {
   /// Padding is 20 [EdgeInsets.all]
   const PagePadding.all() : super.all(20);
@@ -12,4 +13,12 @@ final class PagePadding extends EdgeInsets {
 
   /// Padding is 8 [EdgeInsets.all]
   const PagePadding.allSmall() : super.all(8);
+
+  /// Padding is 20 for top, left, right
+  const PagePadding.allWithoutBottom()
+      : super.only(top: 20, left: 20, right: 20);
+
+  /// Padding is 20 for bottom, left, right
+  const PagePadding.allWithoutTop()
+      : super.only(bottom: 20, left: 20, right: 20);
 }

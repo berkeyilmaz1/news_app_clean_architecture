@@ -22,6 +22,11 @@ dependencies:
   dio: ^5.7.0
   pretty_dio_logger: ^1.4.0
 
+  #Cache
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  cached_network_image: ^3.4.1
+
   #Value Equality
   equatable: ^2.0.7
 
@@ -34,11 +39,16 @@ dependencies:
   #Functional Programming
   dartz: ^0.10.1
 
+  #Config
+  envied: ^1.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   build_runner: ^2.4.14
+  hive_generator: ^2.0.1
+  envied_generator: ^1.0.0
 
 flutter:
   uses-material-design: true

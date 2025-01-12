@@ -1,7 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:news_app/config/widgets/page/page_padding.dart';
 import 'package:news_app/config/widgets/widget_sizes.dart';
-import 'package:news_app/features/news/domain/entities/news_entitiy.dart';
+import 'package:news_app/features/news/domain/entities/news_entity.dart';
+import 'package:news_app/features/news_detail/view/mixin/news_detail_view_mixin.dart';
 
 part '../widgets/detail_content.dart';
 part '../widgets/detail_image.dart';
@@ -17,14 +19,20 @@ final class NewsDetailView extends StatefulWidget {
   State<NewsDetailView> createState() => _NewsDetailViewState();
 }
 
-class _NewsDetailViewState extends State<NewsDetailView> {
+class _NewsDetailViewState extends State<NewsDetailView>
+    with NewsDetailViewMixin {
   @override
   Widget build(BuildContext context) {
     final news = widget.news;
     return SafeArea(
       child: Scaffold(
         extendBodyBehindAppBar: true,
-        appBar: AppBar(),
+        appBar: AppBar(
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back),
+            onPressed: () => onBackButtonPressed(context),
+          ),
+        ),
         body: Column(
           children: [
             DetailImage(news: news),

@@ -1,3 +1,4 @@
+///[WidgetSizes] is a class that contains the sizes of the widgets
 final class WidgetSizes {
   WidgetSizes._();
 

@@ -5,11 +5,13 @@ import 'package:news_app/config/widgets/page/page_padding.dart';
 import 'package:news_app/core/extensions/icon_extensions.dart';
 import 'package:news_app/core/utils/border_radius_general.dart';
 
+/// [CustomSearchBar] is a class that extends [StatelessWidget] to provide a custom search bar widget.
 final class CustomSearchBar extends StatelessWidget {
   const CustomSearchBar({
     required this.controller,
     required this.onChanged,
     required this.searchButtonPressed,
+    required this.searchBarTapped,
     super.key,
     this.validator,
   });
@@ -17,13 +19,14 @@ final class CustomSearchBar extends StatelessWidget {
   final TextEditingController controller;
   final String? Function(String?)? validator;
   final ValueChanged<String> onChanged;
-
+  final VoidCallback searchBarTapped;
   final VoidCallback searchButtonPressed;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      onTap: searchBarTapped,
       validator: validator,
       keyboardType: TextInputType.text,
       decoration: InputDecoration(

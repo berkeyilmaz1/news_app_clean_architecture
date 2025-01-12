@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:news_app/config/constants/lottie_constants.dart';
 
+/// [CustomLoading] is a class that extends [StatelessWidget] to provide a custom loading widget.
 final class CustomLoading extends StatelessWidget {
   const CustomLoading({
     required this.width,

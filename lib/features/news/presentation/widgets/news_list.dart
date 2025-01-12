@@ -1,5 +1,6 @@
 part of '../view/news_view.dart';
 
+/// [NewsList] is a StatelessWidget that is responsible for displaying the news list.
 final class NewsList extends StatelessWidget {
   const NewsList({
     required this.scrollController,

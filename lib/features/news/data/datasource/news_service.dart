@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:news_app/config/constants/api_key.dart';
 import 'package:news_app/config/constants/service_paths.dart';
 import 'package:news_app/config/constants/string_constants.dart';
+import 'package:news_app/config/env/app_environment.dart';
 import 'package:news_app/config/errors/exceptions/exceptions.dart';
 import 'package:news_app/core/service/enums/network_manager_queries.dart';
 import 'package:news_app/core/service/news_network_manager.dart';
@@ -33,7 +33,7 @@ final class NewsService implements INewsService {
           ),
           NetworkManagerQueries.makeQuery(
             query: NetworkManagerQueries.apiKey,
-            value: ApiKey.apiKey,
+            value: AppEnvironmentItems.apiKey.value,
           ),
           NetworkManagerQueries.makeQuery(
             query: NetworkManagerQueries.pageSize,

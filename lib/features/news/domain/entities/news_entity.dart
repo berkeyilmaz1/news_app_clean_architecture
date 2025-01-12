@@ -12,12 +12,19 @@ class NewsEntity extends Equatable {
     this.publishedAt,
     this.content,
   });
+
   final String? author;
+
   final String? title;
+
   final String? description;
+
   final String? url;
+
   final String? urlToImage;
+
   final String? publishedAt;
+
   final String? content;
 
   @override

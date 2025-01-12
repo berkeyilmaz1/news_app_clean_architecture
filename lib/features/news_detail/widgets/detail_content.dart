@@ -32,8 +32,9 @@ final class DetailContent extends StatelessWidget {
             ),
           ),
           const SizedBox(height: WidgetSizes.spacingNormal),
+          /// Split is used because the content has a character count at the end from the API.
           Text(
-            news.content ?? '',
+            news.content?.split('[')[0] ?? '',
             style: const TextStyle(
               fontSize: WidgetSizes.spacingNormal,
             ),
