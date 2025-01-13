@@ -9,47 +9,50 @@ import 'package:news_app/features/news/domain/repositories/news_repository.dart'
 import 'package:news_app/features/news/domain/usecases/get_news.dart';
 import 'package:news_app/features/news/presentation/providers/news_notifiers.dart';
 
-final getIt = GetIt.instance;
-/// [setupDependencies] is a function that sets up the dependencies for the application.
-Future<void> setupDependencies() async {
-  // Core
-  getIt
-    ..registerLazySingleton<Dio>(() {
-      final dio = Dio();
-      return dio;
-    })
-    ..registerLazySingleton<NewsNetworkManager>(
-      () => NewsNetworkManager(
-        dio: getIt(),
-        baseUrl: ServicePaths.baseUrl,
-      ),
-    )
+class Injector {
+  static final getIt = GetIt.instance;
 
-    // Data Sources
-    ..registerLazySingleton<NewsService>(
-      () => NewsService(newsNetworkManager: getIt()),
-    )
-    ..registerLazySingleton<NewsLocalService>(
-      NewsLocalService.new,
-    )
+  /// [setupDependencies] is a function that sets up the dependencies for the application.
+  static Future<void> setupDependencies() async {
+    // Core
+    getIt
+      ..registerLazySingleton<Dio>(() {
+        final dio = Dio();
+        return dio;
+      })
+      ..registerLazySingleton<NewsNetworkManager>(
+        () => NewsNetworkManager(
+          dio: getIt(),
+          baseUrl: ServicePaths.baseUrl,
+        ),
+      )
 
-    // Repositories
-    ..registerLazySingleton<NewsRepository>(
-      () => NewsRepositoryImpl(
-        newsService: getIt(),
-        newsLocalService: getIt(),
-      ),
-    )
+      // Data Sources
+      ..registerLazySingleton<NewsService>(
+        () => NewsService(newsNetworkManager: getIt()),
+      )
+      ..registerLazySingleton<NewsLocalService>(
+        NewsLocalService.new,
+      )
 
-    // Use Cases
-    ..registerLazySingleton(
-      () => GetNewsUseCase(newsRepository: getIt()),
-    )
+      // Repositories
+      ..registerLazySingleton<NewsRepository>(
+        () => NewsRepositoryImpl(
+          newsService: getIt(),
+          newsLocalService: getIt(),
+        ),
+      )
 
-    // Notifiers
-    ..registerFactory(
-      () => NewsNotifier(getIt()),
-    );
+      // Use Cases
+      ..registerLazySingleton(
+        () => GetNewsUseCase(newsRepository: getIt()),
+      )
 
-  await getIt<NewsLocalService>().init();
+      // Notifiers
+      ..registerFactory(
+        () => NewsNotifier(getIt()),
+      );
+
+    await getIt<NewsLocalService>().init();
+  }
 }

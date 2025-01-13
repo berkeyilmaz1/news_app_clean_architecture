@@ -5,5 +5,5 @@ import 'package:news_app/injector.dart';
 
 final newsNotifierProvider =
     StateNotifierProvider<NewsNotifier, NewsState>((ref) {
-  return getIt<NewsNotifier>();
+  return Injector.getIt<NewsNotifier>();
 });
