@@ -11,6 +11,7 @@ final class SearchBarWithHistory extends StatelessWidget {
     required this.searchButtonPressed,
     required this.searchBarOnChanged,
     required this.changeVisibility,
+    required this.onTapOutside,
     super.key,
   });
 
@@ -21,7 +22,7 @@ final class SearchBarWithHistory extends StatelessWidget {
   final VoidCallback searchButtonPressed;
   final void Function(String) searchBarOnChanged;
   final VoidCallback changeVisibility;
-
+  final void Function(PointerDownEvent)? onTapOutside;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -29,6 +30,7 @@ final class SearchBarWithHistory extends StatelessWidget {
         Padding(
           padding: const PagePadding.allWithoutBottom(),
           child: CustomSearchBar(
+            onTapOutside: onTapOutside,
             searchBarTapped: searchBarTapped,
             searchButtonPressed: searchButtonPressed,
             controller: searchController,

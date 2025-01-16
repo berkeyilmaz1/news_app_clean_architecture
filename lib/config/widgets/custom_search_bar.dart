@@ -12,6 +12,7 @@ final class CustomSearchBar extends StatelessWidget {
     required this.onChanged,
     required this.searchButtonPressed,
     required this.searchBarTapped,
+    required this.onTapOutside,
     super.key,
     this.validator,
   });
@@ -21,10 +22,12 @@ final class CustomSearchBar extends StatelessWidget {
   final ValueChanged<String> onChanged;
   final VoidCallback searchBarTapped;
   final VoidCallback searchButtonPressed;
+  final void Function(PointerDownEvent)? onTapOutside;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTapOutside: onTapOutside,
       controller: controller,
       onTap: searchBarTapped,
       validator: validator,

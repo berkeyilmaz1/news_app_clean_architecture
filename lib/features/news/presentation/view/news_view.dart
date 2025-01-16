@@ -18,7 +18,6 @@ import 'package:news_app/features/news_detail/view/news_detail_view.dart';
 
 part '../widgets/news_card.dart';
 part '../widgets/news_list.dart';
-part '../widgets/search_components.dart';
 part '../widgets/searchbar_with_history.dart';
 
 /// [NewsView] is a StatelessWidget that is responsible for displaying the news list.
@@ -37,39 +36,34 @@ class _NewsViewState extends ConsumerState<NewsView> with NewsViewMixin {
     return Form(
       key: formKey,
       child: SafeArea(
-        /// When the user taps on the screen, the history list will be hidden.
-        child: GestureDetector(
-          onTap: () => changeHistoryVisibility(
-            value: false,
+        child: Scaffold(
+          appBar: AppBar(
+            title: const Text(StringConstants.appName),
           ),
-          behavior: HitTestBehavior.opaque,
-          child: Scaffold(
-            appBar: AppBar(
-              title: const Text(StringConstants.appName),
-            ),
-            body: Column(
-              children: [
-                SearchBarWithHistory(
-                  changeVisibility: () => changeHistoryVisibility(value: false),
-                  searchBarOnChanged: searchBarOnChanged,
-                  searchButtonPressed: searchButtonPressed,
-                  searchBarTapped: searchBarTapped,
-                  searchController: searchController,
-                  isHistoryVisible: isHistoryVisible,
-                  state: state,
+          body: Column(
+            children: [
+              SearchBarWithHistory(
+                onTapOutside: (_) => changeHistoryVisibility(
+                  value: false,
                 ),
-                if (state.newsStatus == NewsStatus.loading &&
-                    state.news == null)
-                  CustomLoading(
-                    width: context.width3,
-                    height: context.height3,
-                  ),
-                if (state.newsStatus == NewsStatus.error)
-                  Text(state.errorMessage!),
-                if (state.news != null)
-                  NewsList(scrollController: scrollController, state: state),
-              ],
-            ),
+                changeVisibility: () => changeHistoryVisibility(value: false),
+                searchBarOnChanged: searchBarOnChanged,
+                searchButtonPressed: searchButtonPressed,
+                searchBarTapped: searchBarTapped,
+                searchController: searchController,
+                isHistoryVisible: isHistoryVisible,
+                state: state,
+              ),
+              if (state.newsStatus == NewsStatus.loading && state.news == null)
+                CustomLoading(
+                  width: context.width3,
+                  height: context.height3,
+                ),
+              if (state.newsStatus == NewsStatus.error)
+                Text(state.errorMessage!),
+              if (state.news != null)
+                NewsList(scrollController: scrollController, state: state),
+            ],
           ),
         ),
       ),
